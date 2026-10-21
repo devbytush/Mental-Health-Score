@@ -34,7 +34,7 @@ class StudentData(BaseModel):
     avg_daily_usage_hours: float = Field(..., ge=0, le=24)
     daily_unlocks: int = Field(..., ge=0)
     study_hours: float = Field(..., ge=0, le=24)
-    physical_activity_hours: float = Field(..., ge=0, le=2)
+    physical_activity_hours: float = Field(..., ge=0, le=24)
     sleep_hours_per_night: float = Field(..., ge=0, le=24)
     stress_level: Literal['Low', 'Medium', 'High', 'Very High']
 
