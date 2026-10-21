@@ -22,13 +22,13 @@ const SECTIONS = [
   ['Social media', [
     ['seg', 'most_used_platform', 'Platform you use most'],
     ['seg', 'purpose_of_use', 'What you mostly use it for'],
-    ['rng', 'avg_daily_usage_hours', 'Time on social media per day', 0, 16, 0.5, 4, ' h'],
-    ['rng', 'daily_unlocks', 'Phone unlocks per day', 0, 300, 5, 70, ''],
+    ['rng', 'avg_daily_usage_hours', 'Time on social media per day', 0, 16, 0.1, 4, ' h'],
+    ['rng', 'daily_unlocks', 'Phone unlocks per day', 0, 300, 1, 70, ''],
   ]],
   ['Your day', [
-    ['rng', 'study_hours', 'Study time per day', 0, 12, 0.5, 4, ' h'],
-    ['rng', 'sleep_hours_per_night', 'Sleep per night', 0, 12, 0.5, 7, ' h'],
-    ['rng', 'physical_activity_hours', 'Physical activity per day', 0, 24, 0.5, 0.5, ' h'],
+    ['rng', 'study_hours', 'Study time per day', 0, 12, 0.1, 4, ' h'],
+    ['rng', 'sleep_hours_per_night', 'Sleep per night', 0, 12, 0.1, 7, ' h'],
+    ['rng', 'physical_activity_hours', 'Physical activity per day', 0, 24, 0.1, 0.5, ' h'],
     ['seg', 'stress_level', 'Stress level'],
   ]],
 ];
@@ -48,7 +48,7 @@ function field([type, name, label, min, max, step, val, unit]) {
   if (type === 'num') {
     return `<div class="f"><label class="l" for="${id}">${label}</label><input id="${id}" name="${name}" type="number" min="${min}" max="${max}" step="${step}" value="${val}" inputmode="numeric"></div>`;
   }
-  return `<div class="f"><label class="l" for="${id}">${label}<output id="${id}-o" data-unit="${unit}">${val}${unit}</output></label><input id="${id}" name="${name}" type="range" min="${min}" max="${max}" step="${step}" value="${val}"></div>`;
+  return `<div class="f"><label class="l" for="${id}">${label}<output id="${id}-o" data-unit="${unit}">${step < 1 ? Number(val).toFixed(1) : val}${unit}</output></label><input id="${id}" name="${name}" type="range" min="${min}" max="${max}" step="${step}" value="${val}"></div>`;
 }
 
 form.innerHTML = SECTIONS.map(([t, fs]) => `<section><h2>${t}</h2>${fs.map(field).join('')}</section>`).join('') +
@@ -68,7 +68,7 @@ function syncRange(el) {
   const p = ((el.value - el.min) / (el.max - el.min)) * 100;
   el.style.setProperty('--p', p + '%');
   const o = $('#' + el.id + '-o');
-  if (o) o.textContent = el.value + o.dataset.unit;
+  if (o) o.textContent = (parseFloat(el.step) < 1 ? Number(el.value).toFixed(1) : el.value) + o.dataset.unit;
 }
 function syncDay() {
   const bars = $('#day').children;
