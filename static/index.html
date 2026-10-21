@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Screen time & wellbeing estimator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <h1>How do your daily habits connect to how you feel?</h1>
+    <p>Answer a few questions about your phone, sleep and routine. A model trained on student survey data estimates a mental health score out of 10.</p>
+  </header>
+
+  <form id="form" novalidate></form>
+
+  <aside class="panel" aria-live="polite">
+    <div class="gauge" id="gauge">
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <circle class="track" cx="100" cy="100" r="90"/>
+        <circle class="ring" id="ring" cx="100" cy="100" r="90"/>
+      </svg>
+      <div class="orb" id="orb"></div>
+      <div class="score" id="score">–</div>
+    </div>
+    <div class="verdict">
+      <h2 id="vtitle">Your score appears here</h2>
+      <p id="vtext">Fill in the form, then select Estimate my score.</p>
+    </div>
+    <div class="dayblock">
+      <div class="day" id="day" role="img" aria-label="How a 24-hour day is split"></div>
+      <ul class="legend" id="legend"></ul>
+    </div>
+    <p class="note">This is a statistical estimate, not a diagnosis. If you’re struggling, talk to someone you trust or a health professional.</p>
+  </aside>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
