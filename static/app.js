@@ -28,7 +28,7 @@ const SECTIONS = [
   ['Your day', [
     ['rng', 'study_hours', 'Study time per day', 0, 12, 0.5, 4, ' h'],
     ['rng', 'sleep_hours_per_night', 'Sleep per night', 0, 12, 0.5, 7, ' h'],
-    ['rng', 'physical_activity_hours', 'Physical activity per day', 0, 2, 0.1, 0.5, ' h'],
+    ['rng', 'physical_activity_hours', 'Physical activity per day', 0, 24, 0.5, 0.5, ' h'],
     ['seg', 'stress_level', 'Stress level'],
   ]],
 ];
