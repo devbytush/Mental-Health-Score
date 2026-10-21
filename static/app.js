@@ -105,7 +105,7 @@ function show(score) {
   const t0 = performance.now(), dur = 1600;
   (function tick(t) {
     const k = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - k, 3);
-    $('#score').textContent = (score * e).toFixed(1);
+    $('#score').textContent = (score * e).toFixed(2);
     if (k < 1) requestAnimationFrame(tick);
   })(t0);
 }
